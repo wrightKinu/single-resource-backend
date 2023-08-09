@@ -9,10 +9,10 @@ CREATE TABLE shows (
  image VARCHAR(255),
  title TEXT NOT NULL,
  genre TEXT NOT NULL,
- summary TEXT,
  release_date DATE,
  season_count INT,
- cast TEXT,
+ episode_count INT,
+ cast_members TEXT,
  director VARCHAR(255),
  is_favorite BOOLEAN
 );
@@ -25,7 +25,7 @@ CREATE TABLE reviews (
  title TEXT,
  content TEXT,
  rating NUMERIC,
- CHECK (rating >= 0 AND rating <= 5),
+ CHECK (rating >= 0 AND rating <= 10),
 show_id INTEGER REFERENCES shows (id)
  ON DELETE CASCADE
 );

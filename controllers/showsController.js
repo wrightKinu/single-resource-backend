@@ -1,6 +1,7 @@
 const express = require("express");
 const shows = express.Router();
-
+const {getAllShows, getShow, createShow, deleteShow, updateShow} = require ("../queries/shows")
+const { checkBoolean, checkTitle, validateURL} = require("../validations/checkShow");
 
 // INDEX
 shows.get("/", async(req, res) => {
@@ -24,7 +25,7 @@ shows.get("/", async(req, res) => {
   });
   
   // CREATE
-  shows.post("/", checkBoolean, checkName, checkArtist, async (req, res) => {
+  shows.post("/", checkBoolean, checkTitle, async (req, res) => {
     try {
       const show = await createShow(req.body);
       res.json(show);
@@ -45,7 +46,7 @@ shows.get("/", async(req, res) => {
   });
   
   // UPDATE
-  shows.put("/:id",checkBoolean, checkName, checkArtist, async (req, res) => {
+  shows.put("/:id",checkBoolean, checkTitle,  async (req, res) => {
     const { id } = req.params;
     const updatedShow = await updateShow(id, req.body);
     res.status(200).json(updatedShow);
