@@ -18,6 +18,11 @@ app.get("/", (req, res) => {
 const showsController = require("./controllers/showsController.js");
 app.use("/shows", showsController);
 
+// Reviews ROUTES
+const reviewController = require("./controllers/reviewController.js");
+app.use("/reviews", reviewController);
+
+
 // 404 PAGE
 app.get("*", (req, res) => {
     res.status(404).send("Page not found");

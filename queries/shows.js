@@ -42,8 +42,8 @@ const createShow = async (show) => {
   const updateShow = async (id, show) => {
     try {
       const updatedShow = await db.one(
-        "INSERT INTO shows (image, title, genre, release_date, season_count, episode_count, cast, director, is_favorite) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
-        [show.image, show.title, show.genre, show.release_date, show.season_count, show.episode_count, show.cast, show.director, show.is_favorite]
+        "UPDATE shows SET image=$1, title=$2, genre=$3, release_date=$4, season_count=$5, season_count=$6, cast=$7, director=$8, is_favorite=$9 where id=$10 RETURNING *",
+        [show.image, show.title, show.genre, show.release_date, show.season_count, show.season_count, show.cast, show.director, show.is_favorite]
       );
       return updatedShow;
     } catch (error) {

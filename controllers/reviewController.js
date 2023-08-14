@@ -10,12 +10,26 @@ const {
   updateReview,
 } = require("../queries/reviews");
 
+// reviews.get('/', async (req, res) => {
+//   try {
+//     const {show_id} = req.params; // Get show_id from query parameter
+//     const sortByShowId = req.params.sortByShowId === 'true'; // Convert string to boolean
+
+//     const reviews = await getAllReviews(show_id, sortByShowId);
+
+//     res.json(reviews);
+//   } catch (err) {
+//     res.status(500).json({ error: 'An error occurred' });
+//   }
+// });
+
+
 // INDEX
 reviews.get("/", async (req, res) => {
-    const { bookmarkId } = req.params;
+    const { showId } = req.params;
   
     try {
-      const allReviews = await getAllReviews(bookmarkId);
+      const allReviews = await getAllReviews(showId);
       res.json(allReviews);
     } catch (err) {
       res.json(err);

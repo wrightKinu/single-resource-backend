@@ -11,6 +11,15 @@ const getAllReviews = async (show_id) => {
     return err;
     }
 }
+const getShowReviews = async () => {
+  try {
+    const allShowReviews = await db.any("SELECT * FROM reviews");
+    return allShowReviews;
+  } catch (error) {
+    return error;
+  }
+};
+
 
 const getReview = async (id) => {
   try {
@@ -71,6 +80,7 @@ const updateReview = async (id, review) => {
 };
 module.exports = {
   getAllReviews,
+  getShowReviews,
   getReview,
   newReview,
   deleteReview,
